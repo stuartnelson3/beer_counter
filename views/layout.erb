@@ -1,0 +1,35 @@
+<!doctype html>  
+<html lang="en">  
+<head>  
+  <meta charset="utf8">  
+  <title><%= @title + ' | Beer Counter' %></title>  
+  <link href="/reset.css" rel="stylesheet">  
+  <link href="/style.css" rel="stylesheet">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+  <script src="/script.js"></script>
+</head>  
+<body>  
+  <header>  
+    <hgroup>  
+      <h1><a href="/"><%= SITE_TITLE %></a></h1>  
+      <h2><%= SITE_DESCRIPTION %></h2> 
+    </hgroup>  
+  </header>  
+  
+  <div id="main">
+    <header><p><%= "Request URL: #{request.url}"%></p><p><%= "Request Path Info: #{request.path_info}"%></p></header>
+    <% if flash[:notice] %>  
+        <p class="notice"><%= flash[:notice] %>  
+    <% end %>  
+
+    <% if flash[:error] %>  
+        <p class="error"><%= flash[:error] %>  
+    <% end %>
+    <%= yield %>  
+  </div>  
+  
+  <footer>  
+    <p><small>An app by Stuart Nelson.</small></p>  
+  </footer>  
+</body>  
+</html>

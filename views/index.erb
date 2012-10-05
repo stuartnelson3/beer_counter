@@ -1,0 +1,56 @@
+<h1>Beers drank: <%= @total_drank %></h1>
+<h1>Total money spent: <%= @total_spent %></h1>
+<h1>Quality ratio*: <%= @quality_ratio %></h1>
+<p><small>*Quality ratio is how much you spent divided by how much you drank.<br />The more you spend per beer, the better it probably is. Hopefully.</small></p> 
+<section id="add">  
+  <form action="/" method="post">
+    <label for="name">Beer name</label>  
+    <input type="text" value="" name="name"/>
+    <label for="type">Beer type</label>
+    <select name="type">
+      <option value="Lager">Lager</option>
+      <option value="Ale">Ale</option>
+      <option value="Bitter">Bitter</option>
+      <option value="Stout">Stout</option>
+    </select>
+    <label for="price">Beer price</label>
+    <input type="text" value="" name="price"/>
+    <label for="quantity">How many?</label>
+    <input type="text" value="" name="quantity"/>
+    <label for="night">What night?</label>
+    <select name="night">
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+      <option value="Saturday">Saturday</option>
+      <option value="Sunday">Sunday</option>
+    </select>
+    <label for="location">Where were you?</label>
+    <input type="text" value="" name="location" />
+    <input type="submit" value="Record your Night!" class="record">  
+  </form>  
+</section>
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Type</td>
+    <td>Price</td>
+    <td>Quantity</td>
+    <td>Night</td>
+    <td>Location</td>
+  </tr>
+  <% @beer.each do |beer| %>
+    <tr>
+      <td><%=h beer.name %></td>
+      <td><%=h beer.type %></td>
+      <td><%=h sprintf("%5.2f", beer.price) %></td>
+      <td><%=h beer.quantity %></td>
+      <td><%=h beer.night %></td>
+      <td><%=h beer.location %></td>
+      <td><a href="/<%= beer.id %>">Edit</a></td>
+    </tr>
+  <% end %>
+</table>

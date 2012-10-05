@@ -1,0 +1,31 @@
+<% if @beer %>
+  <form action="/<%= @beer.id %>" method="post">
+    <section id="add" class="edit">
+      <input type="hidden" name="_method" value="put">  
+      <label for="name">Beer name</label>  
+      <input type="text" value="<%= @beer.name %>" name="name"/>
+      <label for="type">Beer type</label>
+      <select name="type">
+        <% ["Lager", "Bitter", "Ale", "Stout"].each do |type| %>
+          <option <%= 'selected="selected"' if type == @beer.type %> value="<%= type %>"><%= type %></option>
+        <% end %>
+      </select>
+      <label for="price">Beer price</label>
+      <input type="text" value="<%= @beer.price %>" name="price"/>
+      <label for="quantity">How many?</label>
+      <input type="text" value="<%= @beer.quantity %>" name="quantity"/>
+      <label for="night">What night?</label>
+      <select name="night">
+        <% ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].each do |day| %>
+          <option <%= 'selected="selected"' if day == @beer.night %> value="<%= day %>"><%= day %></option>
+        <% end %>
+      </select>
+      <label for="location">Where were you?</label>
+      <input type="text" value="<%= @beer.location %>" name="location" />
+      <input type="submit" value="Remember your night differently.." class="record">
+    </section>  
+  </form>
+  <p><a href="/<%= @beer.id %>/delete">Delete</a></p> 
+<% else %>
+<p>Sorry, that night wasn't found</p>
+<% end %>
